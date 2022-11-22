@@ -15,7 +15,7 @@ class WeatherForecasts
     public function __construct(string $location, int $days, string $units = UNITS, string $language = LANGUAGE)
     {
         if ($location !== "") {
-            $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
+            $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__, '../.env');
             $dotenv->load();
             $dotenv->required('API_KEY')->notEmpty();
             $apiKey = substr($_ENV['API_KEY'], 0, -1);
