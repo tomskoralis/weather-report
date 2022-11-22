@@ -2,20 +2,40 @@
 
 namespace App;
 
-use Cmfcmf\OpenWeatherMap\CurrentWeather;
+use Cmfcmf\OpenWeatherMap;
+use Cmfcmf\OpenWeatherMap\{CurrentWeather, Exception as OWMException};
+use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
+use Http\Factory\Guzzle\RequestFactory;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
-class WeatherData
+class WeatherCurrently
 {
     private CurrentWeather $weatherData;
 
-    public function __construct(CurrentWeather $weatherData)
+    public function __construct(string $location, string $units = UNITS, string $language = LANGUAGE)
     {
-        $this->weatherData = $weatherData;
+        if ($location !== "") {
+            $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
+            $dotenv->load();
+            $dotenv->required('API_KEY')->notEmpty();
+            $apiKey = substr($_ENV['API_KEY'], 0, -1);
+            $httpRequestFactory = new RequestFactory();
+            $httpClient = GuzzleAdapter::createWithConfig([]);
+            $cache = new FilesystemAdapter();
+            $owm = new OpenWeatherMap($apiKey, $httpClient, $httpRequestFactory, $cache, CACHE_REFRESH_TIME);
+            try {
+                $this->weatherData = $owm->getWeather($location, $units, $language);
+            } catch (OWMException $e) {
+                echo "OpenWeatherMap exception: {$e->getMessage()} (Code {$e->getCode()})" . LINE_BREAK;
+            } catch (\Exception $e) {
+                echo "General exception: {$e->getMessage()} (Code {$e->getCode()})" . LINE_BREAK;
+            }
+        }
     }
 
-    private function getWeatherData(): CurrentWeather
+    public function getWeatherData(): ?CurrentWeather
     {
-        return $this->weatherData;
+        return $this->weatherData ?? null;
     }
 
     public function getCity(): string

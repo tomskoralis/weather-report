@@ -4,7 +4,7 @@ namespace App;
 
 use Cmfcmf\OpenWeatherMap\Forecast;
 
-class ForecastData
+class WeatherForecastHourly
 {
     private Forecast $forecast;
 
@@ -13,9 +13,9 @@ class ForecastData
         $this->forecast = $forecast;
     }
 
-    private function getForecast(): ?Forecast
+    public function getForecast(): ?Forecast
     {
-        return $this->forecast;
+        return $this->forecast ?? null;
     }
 
     public function getTimeZone(): string
