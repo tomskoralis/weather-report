@@ -95,6 +95,11 @@ class WeatherCurrently
         return $this->getWeatherData()->weather->description;
     }
 
+    public function getWeatherSymbol(): string
+    {
+        return $this->getWeatherData()->weather->icon;
+    }
+
     public function getPrecipitation(): string
     {
         return $this->getWeatherData()->precipitation->getDescription();

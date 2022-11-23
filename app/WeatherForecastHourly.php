@@ -39,4 +39,9 @@ class WeatherForecastHourly
     {
         return $this->getForecast()->weather->description;
     }
+
+    public function getWeatherSymbol(): string
+    {
+        return $this->getForecast()->weather->icon;
+    }
 }
