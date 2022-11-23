@@ -1,17 +1,17 @@
 * {
     box-sizing: border-box;
-    font-size: calc(10px + 0.5vw);
+    font-size: calc(10px + 0.4vw);
 }
 
 html, body {
+    background: #363636;
+    color: #ffffff;
     padding: 0;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     height: 100vh;
     width: 100vw;
-    color: #ffffff;
-    background: #363636;
 }
 
 a {
@@ -28,13 +28,26 @@ a {
     min-height: 14em;
 }
 
+#navigation {
+    margin-bottom: 0.5em;
+}
+
+#navigation, #locationForm, #selectCity {
+    margin-top: 0.5em;
+}
+
+#headerText {
+    font-size: larger;
+    text-align: left;
+    margin-right: 8em;
+}
+
 #top {
     background: #252525;
     width: 30em;
-    padding-top: 1em;
     position: fixed;
     top: 0;
-    height: 8em;
+    height: 8.1em;
 }
 
 #content {
@@ -52,7 +65,7 @@ a {
     display: flex;
 }
 
-footer {
+#timeWhenRetrieved {
     color: #707070;
     width: 30em;
     padding-top: 1em;
@@ -62,7 +75,7 @@ footer {
 }
 
 #tableHeading {
-    margin-top: 0.8em;
+    margin-top: 0.3em;
     margin-bottom: 0.8em;
     font-size: larger;
     font-weight: bold;
@@ -127,8 +140,14 @@ th, td {
     width: 40%;
 }
 
-img {
+img.weatherIcon {
     width: 2em;
     height: 2em;
     vertical-align: middle;
+}
+
+input.submitButton {
+    width: 5em;
+    font-size: larger;
+    margin-top: 0.3em;
 }

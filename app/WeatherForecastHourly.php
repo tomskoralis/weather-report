@@ -13,7 +13,7 @@ class WeatherForecastHourly
         $this->forecast = $forecast;
     }
 
-    public function getForecast(): ?Forecast
+    private function getForecast(): ?Forecast
     {
         return $this->forecast ?? null;
     }
@@ -23,7 +23,7 @@ class WeatherForecastHourly
         return $this->getForecast()->city->timezone->getName();
     }
 
-    public function getTime(): string
+    public function getForecastTime(): string
     {
         return $this->getForecast()->time->from->setTimezone(
             new \DateTimeZone($this->getTimeZone())
