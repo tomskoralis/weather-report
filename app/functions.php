@@ -17,10 +17,10 @@ function initialiseOpenWeatherMap(): ?OpenWeatherMap
     try {
         $dotenv->required('API_KEY')->notEmpty();
     } catch (ValidationException $e) {
-        echo "Validation exception: {$e->getMessage()} (Code {$e->getCode()})" . LINE_BREAK;
+        echo "Validation exception: {$e->getMessage()} (Code {$e->getCode()})";
         return null;
     } catch (\Exception $e) {
-        echo "General exception: {$e->getMessage()} (Code {$e->getCode()})" . LINE_BREAK;
+        echo "General exception: {$e->getMessage()} (Code {$e->getCode()})";
         return null;
     }
     $apiKey = $_ENV['API_KEY'];
@@ -30,33 +30,33 @@ function initialiseOpenWeatherMap(): ?OpenWeatherMap
     try {
         return new OpenWeatherMap($apiKey, $httpClient, $httpRequestFactory, $cache, CACHE_REFRESH_TIME);
     } catch (\InvalidArgumentException $e) {
-        echo "InvalidArgument exception: {$e->getMessage()} (Code {$e->getCode()})" . LINE_BREAK;
+        echo "InvalidArgument exception: {$e->getMessage()} (Code {$e->getCode()})";
     } catch (\Exception $e) {
-        echo "General exception: {$e->getMessage()} (Code {$e->getCode()})" . LINE_BREAK;
+        echo "General exception: {$e->getMessage()} (Code {$e->getCode()})";
     }
     return null;
 }
 
-function fetchCurrentWeather(OpenWeatherMap $owm, string $location, string $units = UNITS, string $language = LANGUAGE): ?CurrentWeather
+function fetchCurrentWeather(OpenWeatherMap $openWeatherMap, string $location, string $units = UNITS, string $language = LANGUAGE): ?CurrentWeather
 {
     try {
-        return $owm->getWeather($location, $units, $language);
+        return $openWeatherMap->getWeather($location, $units, $language);
     } catch (OWMException $e) {
-        echo "OpenWeatherMap exception: {$e->getMessage()} (Code {$e->getCode()})" . LINE_BREAK;
+        echo "OpenWeatherMap exception: {$e->getMessage()} (Code {$e->getCode()})";
     } catch (\Exception $e) {
-        echo "General exception: {$e->getMessage()} (Code {$e->getCode()})" . LINE_BREAK;
+        echo "General exception: {$e->getMessage()} (Code {$e->getCode()})";
     }
     return null;
 }
 
-function fetchWeatherForecasts(OpenWeatherMap $owm, string $location, int $days, string $units = UNITS, string $language = LANGUAGE): ?WeatherForecast
+function fetchWeatherForecasts(OpenWeatherMap $openWeatherMap, string $location, int $days = DAYS, string $units = UNITS, string $language = LANGUAGE): ?WeatherForecast
 {
     try {
-        return $owm->getWeatherForecast($location, $units, $language, '', $days);
+        return $openWeatherMap->getWeatherForecast($location, $units, $language, '', $days);
     } catch (OWMException $e) {
-        echo "OpenWeatherMap exception: {$e->getMessage()} (Code {$e->getCode()})" . LINE_BREAK;
+        echo "OpenWeatherMap exception: {$e->getMessage()} (Code {$e->getCode()})";
     } catch (\Exception $e) {
-        echo "General exception: {$e->getMessage()} (Code {$e->getCode()})" . LINE_BREAK;
+        echo "General exception: {$e->getMessage()} (Code {$e->getCode()})";
     }
     return null;
 }

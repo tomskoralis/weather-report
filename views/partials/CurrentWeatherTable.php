@@ -4,10 +4,10 @@ use Cmfcmf\OpenWeatherMap;
 use function App\fetchCurrentWeather;
 use App\WeatherCurrently;
 
-/** @var OpenWeatherMap $OpenWeatherMap */
+/** @var OpenWeatherMap $openWeatherMap */
 /** @var string $location */
 
-$weatherData = fetchCurrentWeather($OpenWeatherMap, $location);
+$weatherData = fetchCurrentWeather($openWeatherMap, $location);
 if (isset($weatherData)) {
     $weatherReport = new WeatherCurrently($weatherData);
     ?>

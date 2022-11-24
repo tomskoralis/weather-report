@@ -1,12 +1,9 @@
 <?php
 
-
 use App\{WeatherCurrently, WeatherForecasts};
 
 /** @var WeatherCurrently | WeatherForecasts $weatherReport */
-/** @var string $variable */
-
-$type = $variable;
+/** @var string $type */
 
 ?>
 <!doctype html>
@@ -32,16 +29,17 @@ $type = $variable;
         </header>
         <form id="locationForm" action="/" method="get">
             <label for="location">Location:<br></label>
-            <input id="inputBox" type="text" name="location" id="location" value="<?= $location ?? "Riga" ?>" required> <br>
+            <input id="inputBox" type="text" name="location" id="location" value="<?= $location ?? "Riga" ?>" required>
+            <br>
             <input class="submitButton" type="submit" name="type" value="current" accesskey="c">
             <input class="submitButton" type="submit" name="type" value="forecast" accesskey="v">
         </form>
     </div>
     <div id="content">
         <?php
-        if (isset($OpenWeatherMap)) {
-            require_once "views/partials/" . ucfirst($type) . "WeatherTable.php";
-        }
+                if (isset($openWeatherMap)) {
+        require_once "views/partials/" . ucfirst($type) . "WeatherTable.php";
+                }
         ?>
     </div>
     <div id='end'>

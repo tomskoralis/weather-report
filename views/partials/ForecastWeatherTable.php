@@ -5,10 +5,10 @@ use App\{WeatherForecastHourly, WeatherForecasts};
 use function App\fetchWeatherForecasts;
 use const App\DAYS;
 
-/** @var OpenWeatherMap $OpenWeatherMap */
+/** @var OpenWeatherMap $openWeatherMap */
 /** @var string $location */
 
-$weatherData = fetchWeatherForecasts($OpenWeatherMap, $location, DAYS);
+$weatherData = fetchWeatherForecasts($openWeatherMap, $location);
 if (isset($weatherData)) {
     $weatherReport = new WeatherForecasts($weatherData);
     ?>

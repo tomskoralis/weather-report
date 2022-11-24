@@ -3,6 +3,8 @@
 use App\Application;
 
 require_once 'vendor/autoload.php';
+require_once 'app/constants.php';
+require_once 'app/functions.php';
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $route) {
     $route->addRoute('GET', '/', ['App\Controllers\WeatherReportController', 'index']);
@@ -14,6 +16,8 @@ if (false !== $pos = strpos($uri, '?')) {
     $uri = substr($uri, 0, $pos);
 }
 $uri = rawurldecode($uri);
+
+$application = new Application();
 
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 switch ($routeInfo[0]) {
@@ -28,6 +32,6 @@ switch ($routeInfo[0]) {
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
         [$controller, $method] = $handler;
-        (new $controller)->$method();
+        (new $controller)->$method($application);
         break;
 }
