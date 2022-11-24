@@ -1,13 +1,11 @@
 <?php
 
-/** @var string $type */
+
+use App\{WeatherCurrently, WeatherForecasts};
 
 /** @var WeatherCurrently | WeatherForecasts $weatherReport */
-
-use App\{Controllers\WeatherReportController, WeatherCurrently, WeatherForecasts};
-
-//$type = (new WeatherReportController())->index()[0];
 /** @var string $variable */
+
 $type = $variable;
 
 ?>
@@ -33,8 +31,8 @@ $type = $variable;
             </span>
         </header>
         <form id="locationForm" action="/" method="get">
-            <label for="location">Other location:<br></label>
-            <input type="text" name="location" id="location" value="<?= $location ?? "Riga" ?>" required> <br>
+            <label for="location">Location:<br></label>
+            <input id="inputBox" type="text" name="location" id="location" value="<?= $location ?? "Riga" ?>" required> <br>
             <input class="submitButton" type="submit" name="type" value="current" accesskey="c">
             <input class="submitButton" type="submit" name="type" value="forecast" accesskey="v">
         </form>

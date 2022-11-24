@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-size: calc(10px + 0.4vw);
+    font-size: calc(8px + 0.5vw);
 }
 
 html, body {
@@ -20,26 +20,11 @@ a {
 
 #container {
     height: 100%;
-    padding-top: 8em;
+    padding-top: 7em;
     display: grid;
     justify-items: center;
     overflow-x: hidden;
     overflow-y: auto;
-    min-height: 14em;
-}
-
-#navigation {
-    margin-bottom: 0.5em;
-}
-
-#navigation, #locationForm, #selectCity {
-    margin-top: 0.5em;
-}
-
-#headerText {
-    font-size: larger;
-    text-align: left;
-    margin-right: 8em;
 }
 
 #top {
@@ -47,7 +32,37 @@ a {
     width: 30em;
     position: fixed;
     top: 0;
-    height: 8.1em;
+    height: 7.1em;
+}
+
+#navigation {
+    display: flex;
+    padding-top: 0.5em;
+}
+
+#headerText, #selectCity {
+    flex-grow: 1;
+    padding: 0 1em;
+    font-size: larger;
+}
+
+#headerText {
+    text-align: left;
+}
+
+#selectCity {
+    text-align: right;
+}
+
+input.submitButton {
+    width: 25%;
+    margin-top: 0.3em;
+}
+
+#inputBox {
+    width: 60%;
+    font-size: larger;
+    text-align: center;
 }
 
 #content {
@@ -75,8 +90,8 @@ a {
 }
 
 #tableHeading {
-    margin-top: 0.3em;
-    margin-bottom: 0.8em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
     font-size: larger;
     font-weight: bold;
 }
@@ -85,7 +100,7 @@ table {
     margin: 0 auto;
     table-layout: fixed;
     border: 1px solid #404040;
-    width: 29em;
+    width: inherit;
 }
 
 table, th {
@@ -144,10 +159,4 @@ img.weatherIcon {
     width: 2em;
     height: 2em;
     vertical-align: middle;
-}
-
-input.submitButton {
-    width: 5em;
-    font-size: larger;
-    margin-top: 0.3em;
 }
